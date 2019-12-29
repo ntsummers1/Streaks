@@ -1,0 +1,43 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="NoAppBar" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
+    </style>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light">
+        <item name="colorPrimary">@color/color_primary</item>
+        <!--        <item name="colorPrimaryVariant">@color/color_primary_variant</item>-->
+        <!--        <item name="colorOnPrimary">@color/color_on_primary</item>-->
+        <item name="colorSecondary">@color/color_secondary</item>
+        <!--        <item name="colorSecondaryVariant">@color/color_secondary_variant</item>-->
+        <!--        <item name="colorOnSecondary">@color/color_on_secondary</item>-->
+        <item name="colorPrimaryDark">@color/color_primary_dark</item>
+        <item name="colorError">@color/color_error</item>
+        <!--        <item name="colorOnError">@color/color_on_error</item>-->
+        <!--        <item name="colorSurface">@color/color_surface</item>-->
+        <!--        <item name="colorOnSurface">@color/color_on_surface</item>-->
+        <!--        <item name="colorOnBackground">@color/color_on_background</item>-->
+        <item name="actionBarTheme">@style/MyActionBar</item>
+    </style>
+
+    <style name="MyActionBar" parent="@style/ThemeOverlay.MaterialComponents.ActionBar">
+        <item name="android:background">@color/color_secondary</item>
+    </style>
+
+    <style name="AppTheme.Launcher">
+        <item name="android:windowBackground">@drawable/launch_screen</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="BottomNavigationView" parent="ThemeOverlay.MaterialComponents">
+
+    </style>
+
+    <style name="Background" parent="ThemeOverlay.MaterialComponents">
+        <item name="android:backgroundTint">@color/color_background</item>
+    </style>
+
+
+</resources>

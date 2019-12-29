@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Streaks</string>
+    <string name="title_todo">To Do</string>
+    <string name="title_calendar">Calendar</string>
+    <string name="title_profile">Profile</string>
+
+    <string name="todo_header">To Do</string>
+
+    <string name="calendar_header">Calendar</string>
+
+    <string name="profile_header">Profile</string>
+</resources>
