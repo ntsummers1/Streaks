@@ -35,6 +35,8 @@ class TaskRecyclerViewAdapter: RecyclerView.Adapter<TaskRecyclerViewAdapter.Repo
 
         fun bindRepository(task: Task) {
             itemView.task_name.text = task.getTitle()
+            itemView.task_description.text = task.getDescription()
+
 //            itemView.home_fragment_event_day.text =
 //                "${DateFormat.format("d", event.startsAt)}"
 //            itemView.home_fragment_event_month.text =

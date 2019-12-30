@@ -57,20 +57,11 @@ class TodoFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        setupRecyclerView(task_recycler_view,
-            LinearLayoutManager.HORIZONTAL, taskAdapter)
-    }
-
-    private fun setupRecyclerView(
-        recyclerView: RecyclerView,
-        layoutManager: Int,
-        adapter: RecyclerView.Adapter<*>
-    ) {
-        recyclerView.layoutManager =
-            LinearLayoutManager(requireContext(), layoutManager, false)
-        recyclerView.adapter = adapter
-        LinearSnapHelper().attachToRecyclerView(recyclerView)
-        recyclerView.setNestedScrollingEnabled(false)
+        task_recycler_view.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        task_recycler_view.adapter = taskAdapter
+        LinearSnapHelper().attachToRecyclerView(task_recycler_view)
+        task_recycler_view.setNestedScrollingEnabled(false)
     }
 
 
