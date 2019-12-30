@@ -31,5 +31,9 @@
     <fragment
         android:id="@+id/navigation_create_task"
         android:name="com.ntsummers1.streaks.ui.tasks.CreateTaskFragment"
-        android:label="@string/title_create_task" />
+        android:label="@string/title_create_task" >
+        <action
+            android:id="@+id/action_navigation_create_task_to_navigation_todo"
+            app:destination="@id/navigation_todo" />
+    </fragment>
 </navigation>

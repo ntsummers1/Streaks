@@ -8,9 +8,16 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.textfield.TextInputEditText
 import com.ntsummers1.streaks.MainActivity
 import com.ntsummers1.streaks.R
+import com.ntsummers1.streaks.data.entity.Task
 import kotlinx.android.synthetic.main.fragment_create_task.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class CreateTaskFragment : Fragment() {
@@ -18,6 +25,10 @@ class CreateTaskFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: CreateTaskViewModelFactory
     lateinit var viewModel: CreateTaskViewModel
+
+    private var addTaskButton: MaterialButton? = null
+    private var createTaskTitle: TextInputEditText? = null
+    private var createTaskDescription: TextInputEditText? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,6 +39,10 @@ class CreateTaskFragment : Fragment() {
 
         (activity as MainActivity).setupLowerLevelFragment()
         (activity as MainActivity).createTaskFragment(this)
+
+        addTaskButton = root.findViewById(R.id.add_task)
+        createTaskTitle = root.findViewById(R.id.create_task_title_input)
+        createTaskDescription = root.findViewById(R.id.create_task_description_input)
 
         return root
     }
@@ -42,8 +57,18 @@ class CreateTaskFragment : Fragment() {
     }
 
     fun initUi() {
-        viewModel.text.observe(this, Observer {
-            text_create_task_header.text = it
-        })
+        addTaskButton?.setOnClickListener {
+
+            val title = createTaskTitle?.text?.toString()
+            val description = createTaskDescription?.text?.toString()
+
+            if (!title.isNullOrEmpty() and !description.isNullOrEmpty()) {
+                GlobalScope.launch {
+                    viewModel.insertTask(Task(title, description))
+                }
+                view?.findNavController()?.
+                    navigate(R.id.action_navigation_create_task_to_navigation_todo)
+            }
+        }
     }
 }
