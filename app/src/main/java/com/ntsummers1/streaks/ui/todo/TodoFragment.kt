@@ -20,6 +20,7 @@ import com.ntsummers1.streaks.dependencyinjection.DaggerAppComponent
 import com.ntsummers1.streaks.dependencyinjection.RoomModule
 import dagger.android.AndroidInjection.inject
 import kotlinx.android.synthetic.main.fragment_todo.*
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -29,6 +30,7 @@ class TodoFragment : Fragment() {
 
     @Inject
     lateinit var toDoViewModelFactory: ToDoViewModelFactory
+    lateinit var viewModel: TodoViewModel
 
     var button: Button? = null
     var delbutton: Button? = null
@@ -51,37 +53,41 @@ class TodoFragment : Fragment() {
 
         delbutton = root.findViewById(R.id.deleteTasks) as Button
 
-        initUi()
+        button?.setOnClickListener {
+            GlobalScope.launch {
+                viewModel.insertTask(Task("Task", "Description"))
+            }
+        }
+
+        delbutton?.setOnClickListener {
+            GlobalScope.launch {
+                viewModel.deleteTasks()
+            }
+        }
         return root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        viewModel = ViewModelProviders.of(this, toDoViewModelFactory)
+            .get(TodoViewModel::class.java)
+
         task_recycler_view.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         task_recycler_view.adapter = taskAdapter
         LinearSnapHelper().attachToRecyclerView(task_recycler_view)
         task_recycler_view.setNestedScrollingEnabled(false)
+
+        initUI()
     }
 
+    private fun initUI() = GlobalScope.launch(Dispatchers.Main) {
+        val tasks = viewModel.tasks.await()
 
-
-    private fun initUi() {
-        val viewModel = ViewModelProviders.of(this, toDoViewModelFactory)
-            .get(TodoViewModel::class.java)
-
-        viewModel.getTasks.observe(this, Observer { tasks ->
-            taskAdapter.updateTasks(tasks)
+        tasks.observe(this@TodoFragment, Observer {
+            if (it == null) return@Observer
+            taskAdapter.updateTasks(it)
         })
-
-        button?.setOnClickListener {
-            GlobalScope.launch {
-                viewModel.insertTask(Task("Shit", "Balls"))
-            }
-        }
-
-        delbutton?.setOnClickListener {
-                viewModel.deleteTasks()
-        }
     }
 }

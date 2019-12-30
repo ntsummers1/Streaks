@@ -1,11 +1,10 @@
 package com.ntsummers1.streaks.dependencyinjection
 
 import android.app.Application
-import android.provider.ContactsContract
 import androidx.room.Room
 import com.ntsummers1.streaks.data.Database
 import com.ntsummers1.streaks.data.dao.TaskDao
-import com.ntsummers1.streaks.data.repository.TaskDataSource
+import com.ntsummers1.streaks.data.repository.TaskRepositoryImpl
 import com.ntsummers1.streaks.data.repository.TaskRepository
 import dagger.Module
 import dagger.Provides
@@ -32,7 +31,7 @@ class RoomModule(mApplication: Application?) {
     @Singleton
     @Provides
     fun taskRepository(taskDao: TaskDao): TaskRepository {
-        return TaskDataSource(taskDao)
+        return TaskRepositoryImpl(taskDao)
     }
 
     init {

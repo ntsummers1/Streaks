@@ -5,13 +5,13 @@ import com.ntsummers1.streaks.data.entity.Task
 
 
 interface TaskRepository{
-    fun findById(id: Int): LiveData<Task>
+    suspend fun findById(id: Int): LiveData<Task>
 
-    fun findAll(): LiveData<List<Task>>
+    suspend fun findAll(): LiveData<List<Task>>
 
-    fun insert(task: Task?): Long
+    suspend fun insert(task: Task?): Long
 
-    fun delete(task: Task?): Int
+    suspend fun delete(task: Task?): Int
 
-    fun deleteAll()
+    suspend fun deleteAll()
 }

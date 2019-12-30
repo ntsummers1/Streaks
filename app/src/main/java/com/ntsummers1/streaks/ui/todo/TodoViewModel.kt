@@ -6,17 +6,20 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.ntsummers1.streaks.data.entity.Task
 import com.ntsummers1.streaks.data.repository.TaskRepository
+import com.ntsummers1.streaks.utils.lazyDeferred
 import javax.inject.Inject
 
 class TodoViewModel(private val taskRepository: TaskRepository) : ViewModel() {
 
-    val getTasks = taskRepository.findAll()
+    val tasks by lazyDeferred {
+        taskRepository.findAll()
+    }
 
-    fun deleteTasks() {
+    suspend fun deleteTasks() {
         taskRepository.deleteAll()
     }
 
-    fun insertTask(task: Task) {
+    suspend fun insertTask(task: Task) {
         taskRepository.insert(task)
     }
 }
