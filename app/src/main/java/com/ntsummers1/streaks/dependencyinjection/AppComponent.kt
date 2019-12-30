@@ -6,6 +6,7 @@ import com.ntsummers1.streaks.MainActivity
 import com.ntsummers1.streaks.data.Database
 import com.ntsummers1.streaks.data.dao.TaskDao
 import com.ntsummers1.streaks.data.repository.TaskRepository
+import com.ntsummers1.streaks.ui.tasks.CreateTaskFragment
 import com.ntsummers1.streaks.ui.todo.TodoFragment
 import dagger.Component
 
@@ -17,6 +18,7 @@ import javax.inject.Singleton
 interface AppComponent {
     fun inject(mainActivity: MainActivity?)
     fun inject(target: TodoFragment)
+    fun inject(target: CreateTaskFragment)
     fun taskDao(): TaskDao?
     fun database(): Database?
     fun taskrepository(): TaskRepository?

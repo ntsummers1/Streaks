@@ -16,6 +16,7 @@ import com.ntsummers1.streaks.data.repository.TaskRepository
 import com.ntsummers1.streaks.dependencyinjection.AppModule
 import com.ntsummers1.streaks.dependencyinjection.DaggerAppComponent
 import com.ntsummers1.streaks.dependencyinjection.RoomModule
+import com.ntsummers1.streaks.ui.tasks.CreateTaskFragment
 import com.ntsummers1.streaks.ui.todo.TodoFragment
 import javax.inject.Inject
 
@@ -96,7 +97,16 @@ class MainActivity : AppCompatActivity() {
 //        }
     }
 
-    fun daggerFragment(fragment: TodoFragment) {
+    fun todoFragment(fragment: TodoFragment) {
+        DaggerAppComponent.builder()
+            .appModule(AppModule(application))
+            .roomModule(RoomModule(application))
+            .build()
+            .inject(fragment)
+    }
+
+
+    fun createTaskFragment(fragment: CreateTaskFragment) {
         DaggerAppComponent.builder()
             .appModule(AppModule(application))
             .roomModule(RoomModule(application))

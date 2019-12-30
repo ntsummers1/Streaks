@@ -9,9 +9,11 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.ntsummers1.streaks.MainActivity
 import com.ntsummers1.streaks.R
 import com.ntsummers1.streaks.data.entity.Task
@@ -32,9 +34,6 @@ class TodoFragment : Fragment() {
     lateinit var toDoViewModelFactory: ToDoViewModelFactory
     lateinit var viewModel: TodoViewModel
 
-    var button: Button? = null
-    var delbutton: Button? = null
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -42,28 +41,18 @@ class TodoFragment : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_todo, container, false)
 
-        (activity as MainActivity).daggerFragment(this)
+        (activity as MainActivity).todoFragment(this)
 
         (activity as MainActivity).setupHighLevelFragment(
             root.findViewById(R.id.todo_collapsing_toolbar),
             resources.getString(R.string.todo_header)
         )
 
-        button = root.findViewById(R.id.createtask) as Button
-
-        delbutton = root.findViewById(R.id.deleteTasks) as Button
-
-        button?.setOnClickListener {
-            GlobalScope.launch {
-                viewModel.insertTask(Task("Task", "Description"))
-            }
+        val createFAB: FloatingActionButton = root.findViewById(R.id.create_task)
+        createFAB.setOnClickListener {
+            root.findNavController().navigate(R.id.action_navigation_todo_to_navigation_create_task)
         }
 
-        delbutton?.setOnClickListener {
-            GlobalScope.launch {
-                viewModel.deleteTasks()
-            }
-        }
         return root
     }
 

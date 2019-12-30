@@ -53,25 +53,18 @@
                 android:clipToPadding = "false"
                 tools:layout="@layout/item_task"/>
 
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/createtask"
-                android:layout_width="200dp"
-                android:layout_height="50dp"
-                android:text="Add"
-                android:theme="@style/Theme.MaterialComponents"
-                android:backgroundTint="@color/color_primary"
-                android:textColor="@color/white"/>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/deleteTasks"
-                android:layout_width="200dp"
-                android:layout_height="50dp"
-                android:text="Delete all"
-                android:theme="@style/Theme.MaterialComponents"
-                android:backgroundTint="@color/color_primary"
-                android:textColor="@color/white"/>
-
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/create_task"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:src="@drawable/ic_add_24px"
+        android:contentDescription="Create Task"
+        android:layout_margin="16dp"
+        android:theme="@style/Theme.MaterialComponents"
+        android:backgroundTint="@color/color_primary"
+        app:tint ="@color/white"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
