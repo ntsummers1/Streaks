@@ -1,31 +1,26 @@
 package com.ntsummers1.streaks.ui.todo
 
+import android.graphics.drawable.ClipDrawable.HORIZONTAL
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.ntsummers1.streaks.MainActivity
 import com.ntsummers1.streaks.R
-import com.ntsummers1.streaks.data.entity.Task
-import com.ntsummers1.streaks.dependencyinjection.AppModule
-import com.ntsummers1.streaks.dependencyinjection.DaggerAppComponent
-import com.ntsummers1.streaks.dependencyinjection.RoomModule
-import dagger.android.AndroidInjection.inject
 import kotlinx.android.synthetic.main.fragment_todo.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+
 
 class TodoFragment : Fragment() {
     private var taskAdapter = TaskRecyclerViewAdapter()
@@ -64,9 +59,15 @@ class TodoFragment : Fragment() {
 
         task_recycler_view.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+
         task_recycler_view.adapter = taskAdapter
+
         LinearSnapHelper().attachToRecyclerView(task_recycler_view)
+
         task_recycler_view.setNestedScrollingEnabled(false)
+
+        val itemDecor = DividerItemDecoration(context, HORIZONTAL)
+        task_recycler_view.addItemDecoration(itemDecor)
 
         initUI()
     }

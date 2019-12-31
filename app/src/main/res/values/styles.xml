@@ -39,4 +39,14 @@
     <style name="Background" parent="ThemeOverlay.MaterialComponents">
         <item name="android:background">@color/color_background</item>
     </style>
+
+    <style name="ToDoItemTitle">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">@color/color_primary_text</item>
+    </style>
+
+    <style name="ToDoItemDescription">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/color_secondary_text</item>
+    </style>
 </resources>

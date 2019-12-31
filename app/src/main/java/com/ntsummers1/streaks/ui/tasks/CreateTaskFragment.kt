@@ -59,10 +59,10 @@ class CreateTaskFragment : Fragment() {
     fun initUi() {
         addTaskButton?.setOnClickListener {
 
-            val title = createTaskTitle?.text?.toString()
+            val title = createTaskTitle?.text.toString()
             val description = createTaskDescription?.text?.toString()
 
-            if (!title.isNullOrEmpty() and !description.isNullOrEmpty()) {
+            if (!title.isNullOrEmpty()) {
                 GlobalScope.launch {
                     viewModel.insertTask(Task(title, description))
                 }

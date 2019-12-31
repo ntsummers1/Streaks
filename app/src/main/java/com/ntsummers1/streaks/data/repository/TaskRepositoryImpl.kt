@@ -15,7 +15,6 @@ class TaskRepositoryImpl @Inject constructor(taskDao: TaskDao) : TaskRepository 
         return taskDao.findById(id)
     }
 
-
     override suspend fun findAll(): LiveData<List<Task>> {
         return taskDao.findAll()
     }

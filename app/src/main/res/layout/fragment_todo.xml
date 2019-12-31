@@ -32,7 +32,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:theme="@style/Background"
+        style="@style/Background"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
@@ -43,14 +43,14 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/task_recycler_view"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:paddingTop="10dp"
-                android:paddingStart="@dimen/activity_vertical_margin"
-                android:paddingEnd="@dimen/activity_vertical_margin"
+                android:layout_marginStart="@dimen/activity_vertical_margin"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:paddingBottom="10dp"
-                android:clipToPadding = "false"
+                android:clipToPadding = "true"
                 tools:layout="@layout/item_task"/>
 
         </LinearLayout>

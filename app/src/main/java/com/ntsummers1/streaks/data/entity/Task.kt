@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-class Task constructor(private var title: String?, private var description: String?) {
+class Task constructor(private var title: String, private var description: String?) {
 
     @PrimaryKey(autoGenerate = true)
     private var id = 0
@@ -17,11 +17,11 @@ class Task constructor(private var title: String?, private var description: Stri
         return id
     }
 
-    fun getTitle(): String? {
+    fun getTitle(): String {
         return title
     }
 
-    fun setTitle(title: String?) {
+    fun setTitle(title: String) {
         this.title = title
     }
 
