@@ -1,5 +1,6 @@
 package com.ntsummers1.streaks.ui.todo
 
+import android.util.EventLogTags
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,10 +18,6 @@ class TodoViewModel(private val taskRepository: TaskRepository) : ViewModel() {
 
     suspend fun deleteTasks() {
         taskRepository.deleteAll()
-    }
-
-    suspend fun insertTask(task: Task) {
-        taskRepository.insert(task)
     }
 }
 

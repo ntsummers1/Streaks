@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginTop="?android:actionBarSize"
     android:orientation="vertical"
-    android:theme="@style/Background">
+    android:theme="@style/AppTheme"
+    style="@style/Background">
 
     <GridLayout
         android:id="@+id/grid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:padding="16dp"
+        android:paddingStart="@dimen/activity_vertical_margin"
+        android:paddingEnd="@dimen/activity_vertical_margin"
         android:clipToPadding="false"
         android:columnCount="1">
 
@@ -21,12 +23,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_row="0"
-            android:hint="@string/create_task_title_hint" >
+            android:hint="@string/create_task_title_hint"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            app:endIconMode="clear_text">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/create_task_title_input"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -35,7 +41,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_row="1"
-            android:hint="@string/create_task_description_hint">
+            android:hint="@string/create_task_description_hint"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            app:endIconMode="clear_text">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/create_task_description_input"
@@ -51,8 +59,7 @@
             android:layout_row="2"
             android:layout_gravity="end"
             android:text="@string/create_task_create_button"
-            android:theme="@style/Theme.MaterialComponents"
             android:backgroundTint="@color/color_primary"
-            android:textColor="@color/white"/>
+            app:tint ="@color/white"/>
     </GridLayout>
 </LinearLayout>

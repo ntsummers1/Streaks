@@ -1,24 +1,28 @@
 package com.ntsummers1.streaks
 
+import android.content.Context
 import android.content.res.Configuration
+import android.graphics.Rect
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
+import android.view.MotionEvent
+import android.view.View
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.ntsummers1.streaks.data.repository.TaskRepository
 import com.ntsummers1.streaks.dependencyinjection.AppModule
 import com.ntsummers1.streaks.dependencyinjection.DaggerAppComponent
 import com.ntsummers1.streaks.dependencyinjection.RoomModule
 import com.ntsummers1.streaks.ui.tasks.CreateTaskFragment
 import com.ntsummers1.streaks.ui.todo.TodoFragment
-import javax.inject.Inject
 
 
 class MainActivity : AppCompatActivity() {

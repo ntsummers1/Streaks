@@ -17,6 +17,7 @@
 <!--        <item name="colorOnSurface">@color/color_on_surface_night</item>-->
 <!--        <item name="colorOnBackground">@color/color_on_background_night</item>-->
         <item name="actionBarTheme">@style/MyActionBar</item>
+        <item name="android:backgroundTint">@color/color_background_night</item>
     </style>
 
     <style name="MyActionBar" parent="@style/ThemeOverlay.MaterialComponents.ActionBar">

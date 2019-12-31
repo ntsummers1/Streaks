@@ -19,6 +19,7 @@
         <!--        <item name="colorOnSurface">@color/color_on_surface</item>-->
         <!--        <item name="colorOnBackground">@color/color_on_background</item>-->
         <item name="actionBarTheme">@style/MyActionBar</item>
+        <item name="android:backgroundTint">@color/color_background</item>
     </style>
 
     <style name="MyActionBar" parent="@style/ThemeOverlay.MaterialComponents.ActionBar">
@@ -36,8 +37,6 @@
     </style>
 
     <style name="Background" parent="ThemeOverlay.MaterialComponents">
-        <item name="android:backgroundTint">@color/color_background</item>
+        <item name="android:background">@color/color_background</item>
     </style>
-
-
 </resources>
