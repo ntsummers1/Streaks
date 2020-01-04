@@ -56,7 +56,6 @@ dependencies {
     kapt "com.google.dagger:dagger-android-processor:2.25.2"
     compileOnly 'javax.annotation:jsr250-api:1.0'
 
-
     implementation 'androidx.room:room-runtime:2.2.3'
     implementation "androidx.room:room-ktx:2.2.3"
     kapt 'androidx.room:room-compiler:2.2.3'

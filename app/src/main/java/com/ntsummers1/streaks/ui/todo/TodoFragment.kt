@@ -1,10 +1,13 @@
 package com.ntsummers1.streaks.ui.todo
 
+import android.app.DatePickerDialog
+import android.app.DatePickerDialog.OnDateSetListener
 import android.graphics.drawable.ClipDrawable.HORIZONTAL
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -19,11 +22,15 @@ import kotlinx.android.synthetic.main.fragment_todo.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 
 class TodoFragment : Fragment() {
     private var taskAdapter = TaskRecyclerViewAdapter()
+    lateinit var editText: EditText
+    lateinit var myCalendar: Calendar
 
     @Inject
     lateinit var toDoViewModelFactory: ToDoViewModelFactory
@@ -46,6 +53,26 @@ class TodoFragment : Fragment() {
         val createFAB: FloatingActionButton = root.findViewById(R.id.create_task)
         createFAB.setOnClickListener {
             root.findNavController().navigate(R.id.action_navigation_todo_to_navigation_create_task)
+        }
+
+        myCalendar = Calendar.getInstance()
+
+        editText = root.findViewById(R.id.todo_date) as EditText
+        updateLabel()
+
+        val date = OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                myCalendar.set(Calendar.YEAR, year)
+                myCalendar.set(Calendar.MONTH, monthOfYear)
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                updateLabel()
+            }
+
+        editText.setOnClickListener {
+            DatePickerDialog(context, date,
+                myCalendar.get(Calendar.YEAR),
+                myCalendar.get(Calendar.MONTH),
+                myCalendar.get(Calendar.DAY_OF_MONTH)
+            ).show()
         }
 
         return root
@@ -79,5 +106,11 @@ class TodoFragment : Fragment() {
             if (it == null) return@Observer
             taskAdapter.updateTasks(it)
         })
+    }
+
+    private fun updateLabel() {
+        val myFormat = "MM/dd/yy"
+        val sdf = SimpleDateFormat(myFormat, Locale.US)
+        editText.setText(sdf.format(myCalendar.getTime()))
     }
 }
