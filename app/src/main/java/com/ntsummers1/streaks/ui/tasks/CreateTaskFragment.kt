@@ -64,7 +64,7 @@ class CreateTaskFragment : Fragment() {
 
             if (!title.isNullOrEmpty()) {
                 GlobalScope.launch {
-                    viewModel.insertTask(Task(title, description))
+                    viewModel.insertTask(Task(title))
                 }
                 view?.findNavController()?.
                     navigate(R.id.action_navigation_create_task_to_navigation_todo)

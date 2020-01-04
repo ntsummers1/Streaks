@@ -44,7 +44,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+                android:orientation="horizontal"
+                android:layout_marginStart="@dimen/activity_vertical_margin"
+                android:layout_marginEnd="@dimen/activity_vertical_margin">
 
                 <Button
                     android:layout_width="wrap_content"
@@ -66,7 +68,6 @@
                     android:layout_height="wrap_content"
                     android:text="right"
                     />
-
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView

@@ -36,6 +36,8 @@ class RoomModule(mApplication: Application?) {
 
     init {
         database =
-            Room.databaseBuilder(mApplication!!, Database::class.java, "database").build()
+            Room.databaseBuilder(mApplication!!, Database::class.java, "database")
+                .fallbackToDestructiveMigration()
+                .build()
     }
 }
