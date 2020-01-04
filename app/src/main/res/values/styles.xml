@@ -37,7 +37,7 @@
     </style>
 
     <style name="Background" parent="ThemeOverlay.MaterialComponents">
-        <item name="android:background">@color/color_background</item>
+        <item name="android:backgroundTint">@color/color_background</item>
     </style>
 
     <style name="ToDoItemTitle">
@@ -48,5 +48,15 @@
     <style name="ToDoItemDescription">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/color_secondary_text</item>
+    </style>
+
+    <style name="CalenderViewCustom" parent="Theme.AppCompat">
+        <item name="colorAccent">@color/color_primary</item>
+        <item name="android:textColorPrimary">@color/color_primary_text</item>
+        <item name="android:textColorPrimaryInverse">@color/white</item>
+    </style>
+
+    <style name="CalenderViewWeekCustomText" parent="android:TextAppearance.DeviceDefault.Small">
+        <item name="android:textColor">@color/color_primary_text</item>
     </style>
 </resources>

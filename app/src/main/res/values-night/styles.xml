@@ -41,4 +41,14 @@
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/color_secondary_text_night</item>
     </style>
+
+    <style name="CalenderViewCustom" parent="Theme.AppCompat">
+        <item name="colorAccent">@color/color_primary</item>
+        <item name="android:textColorPrimary">@color/color_primary_text_night</item>
+        <item name="android:textColorPrimaryInverse">@color/white</item>
+    </style>
+
+    <style name="CalenderViewWeekCustomText" parent="android:TextAppearance.DeviceDefault.Small">
+        <item name="android:textColor">@color/color_primary_text_night</item>
+    </style>
 </resources>
