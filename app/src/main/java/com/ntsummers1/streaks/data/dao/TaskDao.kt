@@ -3,6 +3,7 @@ package com.ntsummers1.streaks.data.dao
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.ntsummers1.streaks.data.entity.Task
+import java.util.*
 
 
 @Dao
@@ -12,6 +13,9 @@ interface TaskDao {
 
     @Query("SELECT * FROM Task")
     fun findAll(): LiveData<List<Task>>
+
+    @Query("SELECT * FROM Task WHERE startDate <= :givenDate AND (endDate >=:givenDate OR endDate IS NULL)")
+    fun findByDate(givenDate: Date): LiveData<List<Task>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(task: Task?): Long

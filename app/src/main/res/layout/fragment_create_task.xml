@@ -52,6 +52,44 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/create_task_start_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_row="1"
+            android:hint="Start Date"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            app:endIconMode="clear_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/create_task_start_date_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="false"
+                android:inputType="none"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/create_task_end_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_row="1"
+            android:hint="End Date"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            app:endIconMode="clear_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/create_task_end_date_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="false"
+                android:inputType="none"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/add_task"
             android:layout_width="wrap_content"
@@ -61,5 +99,7 @@
             android:text="@string/create_task_create_button"
             android:backgroundTint="@color/color_primary"
             app:tint ="@color/white"/>
+
+
     </GridLayout>
 </LinearLayout>

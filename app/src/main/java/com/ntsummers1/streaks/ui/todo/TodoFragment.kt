@@ -4,11 +4,14 @@ import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
 import android.graphics.drawable.ClipDrawable.HORIZONTAL
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
@@ -18,6 +21,7 @@ import androidx.recyclerview.widget.LinearSnapHelper
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.ntsummers1.streaks.MainActivity
 import com.ntsummers1.streaks.R
+import com.ntsummers1.streaks.data.entity.Task
 import kotlinx.android.synthetic.main.fragment_todo.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -31,10 +35,14 @@ class TodoFragment : Fragment() {
     private var taskAdapter = TaskRecyclerViewAdapter()
     lateinit var editText: EditText
     lateinit var myCalendar: Calendar
+    lateinit var dateBackButton: Button
+    lateinit var dateForwardButton: Button
 
     @Inject
     lateinit var toDoViewModelFactory: ToDoViewModelFactory
     lateinit var viewModel: TodoViewModel
+
+    lateinit var todoDate: LiveData<Calendar>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -75,6 +83,17 @@ class TodoFragment : Fragment() {
             ).show()
         }
 
+        dateBackButton = root.findViewById(R.id.todo_date_back) as Button
+        dateForwardButton = root.findViewById(R.id.todo_date_forward) as Button
+
+        dateBackButton.setOnClickListener {
+            moveDateBackward()
+        }
+
+        dateForwardButton.setOnClickListener {
+            moveDateForward()
+        }
+
         return root
     }
 
@@ -100,10 +119,9 @@ class TodoFragment : Fragment() {
     }
 
     private fun initUI() = GlobalScope.launch(Dispatchers.Main) {
-        val tasks = viewModel.tasks.await()
+        val tasks = viewModel.findByDate(myCalendar.time).await()
 
         tasks.observe(this@TodoFragment, Observer {
-            if (it == null) return@Observer
             taskAdapter.updateTasks(it)
         })
     }
@@ -112,5 +130,15 @@ class TodoFragment : Fragment() {
         val myFormat = "MM/dd/yy"
         val sdf = SimpleDateFormat(myFormat, Locale.US)
         editText.setText(sdf.format(myCalendar.getTime()))
+    }
+
+    private fun moveDateForward() {
+        myCalendar.add(Calendar.DAY_OF_MONTH, 1)
+        updateLabel()
+    }
+
+    private fun moveDateBackward() {
+        myCalendar.add(Calendar.DAY_OF_MONTH, -1)
+        updateLabel()
     }
 }

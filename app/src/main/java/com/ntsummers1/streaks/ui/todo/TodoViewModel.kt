@@ -8,12 +8,23 @@ import androidx.lifecycle.ViewModelProvider
 import com.ntsummers1.streaks.data.entity.Task
 import com.ntsummers1.streaks.data.repository.TaskRepository
 import com.ntsummers1.streaks.utils.lazyDeferred
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import java.util.*
 import javax.inject.Inject
 
 class TodoViewModel(private val taskRepository: TaskRepository) : ViewModel() {
 
     val tasks by lazyDeferred {
         taskRepository.findAll()
+    }
+
+    suspend fun findByDate(givenDate: Date): Deferred<LiveData<List<Task>>> {
+        return GlobalScope.async {
+            taskRepository.findByDate(givenDate)
+        }
     }
 
     suspend fun deleteTasks() {

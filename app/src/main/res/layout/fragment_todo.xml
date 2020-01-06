@@ -49,6 +49,7 @@
                 android:layout_marginEnd="@dimen/activity_vertical_margin">
 
                 <Button
+                    android:id="@+id/todo_date_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="left"
@@ -64,6 +65,7 @@
                     android:textColor="@color/color_primary"/>
 
                 <Button
+                    android:id="@+id/todo_date_forward"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="right"

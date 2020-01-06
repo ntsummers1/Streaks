@@ -4,6 +4,7 @@ import android.os.AsyncTask
 import androidx.lifecycle.LiveData
 import com.ntsummers1.streaks.data.dao.TaskDao
 import com.ntsummers1.streaks.data.entity.Task
+import java.util.*
 import javax.inject.Inject
 
 
@@ -17,6 +18,10 @@ class TaskRepositoryImpl @Inject constructor(taskDao: TaskDao) : TaskRepository 
 
     override suspend fun findAll(): LiveData<List<Task>> {
         return taskDao.findAll()
+    }
+
+    override suspend fun findByDate(givenDate: Date): LiveData<List<Task>> {
+        return taskDao.findByDate(givenDate)
     }
 
     override suspend fun insert(task: Task?): Long {
