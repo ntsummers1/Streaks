@@ -10,6 +10,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
@@ -35,14 +37,12 @@ class TodoFragment : Fragment() {
     private var taskAdapter = TaskRecyclerViewAdapter()
     lateinit var editText: EditText
     lateinit var myCalendar: Calendar
-    lateinit var dateBackButton: Button
-    lateinit var dateForwardButton: Button
+    lateinit var dateBackButton: ImageView
+    lateinit var dateForwardButton: ImageView
 
     @Inject
     lateinit var toDoViewModelFactory: ToDoViewModelFactory
     lateinit var viewModel: TodoViewModel
-
-    lateinit var todoDate: LiveData<Calendar>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -83,8 +83,8 @@ class TodoFragment : Fragment() {
             ).show()
         }
 
-        dateBackButton = root.findViewById(R.id.todo_date_back) as Button
-        dateForwardButton = root.findViewById(R.id.todo_date_forward) as Button
+        dateBackButton = root.findViewById(R.id.todo_date_back) as ImageView
+        dateForwardButton = root.findViewById(R.id.todo_date_forward) as ImageView
 
         dateBackButton.setOnClickListener {
             moveDateBackward()
@@ -129,16 +129,18 @@ class TodoFragment : Fragment() {
     private fun updateLabel() {
         val myFormat = "MM/dd/yy"
         val sdf = SimpleDateFormat(myFormat, Locale.US)
-        editText.setText(sdf.format(myCalendar.getTime()))
+        editText.setText(sdf.format(myCalendar.time))
     }
 
     private fun moveDateForward() {
         myCalendar.add(Calendar.DAY_OF_MONTH, 1)
         updateLabel()
+        initUI()
     }
 
     private fun moveDateBackward() {
         myCalendar.add(Calendar.DAY_OF_MONTH, -1)
         updateLabel()
+        initUI()
     }
 }
