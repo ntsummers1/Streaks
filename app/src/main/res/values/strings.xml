@@ -6,6 +6,7 @@
     <string name="title_calendar">Calendar</string>
     <string name="title_profile">Profile</string>
     <string name="title_create_task">Create A Task</string>
+    <string name="title_edit_task">Edit</string>
 
     <!-- To Do Fragment -->
     <string name="todo_header">To Do</string>
@@ -20,5 +21,10 @@
     <string name="create_task_title_hint">Task Name</string>
     <string name="create_task_description_hint">Task Description</string>
     <string name="create_task_create_button">Create</string>
+
+    <!-- Edit Task Fragment -->
+    <string name="edit_task_title_hint">Task Name</string>
+    <string name="edit_task_description_hint">Task Description</string>
+    <string name="edit_task_create_button">Save</string>
 
 </resources>

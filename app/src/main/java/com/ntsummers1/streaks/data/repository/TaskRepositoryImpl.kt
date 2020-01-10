@@ -24,6 +24,11 @@ class TaskRepositoryImpl @Inject constructor(taskDao: TaskDao) : TaskRepository 
         return taskDao.findByDate(givenDate)
     }
 
+    override suspend fun updateTask(id: Int, title: String, description: String?,
+                                    startDate: Date, endDate: Date?) {
+        taskDao.updateTask(id, title, description, startDate, endDate)
+    }
+
     override suspend fun insert(task: Task?): Long {
         return taskDao.insert(task)
     }

@@ -12,6 +12,8 @@ interface TaskRepository{
 
     suspend fun findByDate(givenDate: Date): LiveData<List<Task>>
 
+    suspend fun updateTask(id: Int, title: String, description: String?, startDate: Date, endDate: Date?)
+
     suspend fun insert(task: Task?): Long
 
     suspend fun delete(task: Task?): Int

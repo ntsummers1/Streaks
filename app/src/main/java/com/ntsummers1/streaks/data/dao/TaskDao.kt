@@ -17,6 +17,9 @@ interface TaskDao {
     @Query("SELECT * FROM Task WHERE startDate <= :givenDate AND (endDate >=:givenDate OR endDate IS NULL)")
     fun findByDate(givenDate: Date): LiveData<List<Task>>
 
+    @Query("UPDATE Task set title = :title, description = :description, startDate = :startDate, endDate = :endDate where id = :id")
+    fun updateTask(id: Int, title: String, description: String?, startDate: Date, endDate: Date?)
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(task: Task?): Long
 

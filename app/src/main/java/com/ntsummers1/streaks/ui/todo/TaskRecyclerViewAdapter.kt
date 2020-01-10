@@ -1,8 +1,10 @@
 package com.ntsummers1.streaks.ui.todo
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.ntsummers1.streaks.R
 import com.ntsummers1.streaks.data.entity.Task
@@ -37,19 +39,13 @@ class TaskRecyclerViewAdapter: RecyclerView.Adapter<TaskRecyclerViewAdapter.Repo
             itemView.task_name.text = task.getTitle()
             itemView.task_description.text = task.getDescription()
 
-//            itemView.home_fragment_event_day.text =
-//                "${DateFormat.format("d", event.startsAt)}"
-//            itemView.home_fragment_event_month.text =
-//                "${DateFormat.format("MMM", event.startsAt)}"
-//            itemView.home_fragment_event_name.text = event.name
-//            itemView.home_fragment_event_time_location.text =
-//                "${DateFormat.format("hh:mm a", event.startsAt)} • ${event.location}"
-//
-//            itemView.setOnClickListener {
-//                val bundle = Bundle()
-//                bundle.putSerializable("EVENT", EventViewModel(event))
-//                itemView.findNavController().navigate(
-//                    R.id.action_nav_today_to_eventDetailFragment, bundle)
+            itemView.setOnClickListener {
+                val bundle = Bundle()
+                bundle.putInt("taskId", task.getId())
+                itemView.findNavController().navigate(
+                    R.id.action_navigation_todo_to_navigation_edit_task, bundle
+                )
+            }
         }
     }
 }

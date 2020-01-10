@@ -15,6 +15,9 @@
             app:destination="@id/navigation_create_task"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/action_navigation_todo_to_navigation_edit_task"
+            app:destination="@id/navigation_edit_task" />
     </fragment>
 
     <fragment
@@ -35,5 +38,16 @@
         <action
             android:id="@+id/action_navigation_create_task_to_navigation_todo"
             app:destination="@id/navigation_todo" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_edit_task"
+        android:name="com.ntsummers1.streaks.ui.tasks.EditTaskFragment"
+        android:label="@string/title_edit_task" >
+        <action
+            android:id="@+id/action_navigation_edit_task_to_navigation_todo"
+            app:destination="@id/navigation_todo" />
+        <argument
+            android:name="taskId"
+            app:argType="integer" />
     </fragment>
 </navigation>

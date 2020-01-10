@@ -22,6 +22,7 @@ import com.ntsummers1.streaks.dependencyinjection.AppModule
 import com.ntsummers1.streaks.dependencyinjection.DaggerAppComponent
 import com.ntsummers1.streaks.dependencyinjection.RoomModule
 import com.ntsummers1.streaks.ui.tasks.CreateTaskFragment
+import com.ntsummers1.streaks.ui.tasks.EditTaskFragment
 import com.ntsummers1.streaks.ui.todo.TodoFragment
 
 
@@ -111,6 +112,14 @@ class MainActivity : AppCompatActivity() {
 
 
     fun createTaskFragment(fragment: CreateTaskFragment) {
+        DaggerAppComponent.builder()
+            .appModule(AppModule(application))
+            .roomModule(RoomModule(application))
+            .build()
+            .inject(fragment)
+    }
+
+    fun editTaskFragment(fragment: EditTaskFragment) {
         DaggerAppComponent.builder()
             .appModule(AppModule(application))
             .roomModule(RoomModule(application))
